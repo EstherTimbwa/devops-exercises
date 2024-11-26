@@ -1,0 +1,60 @@
+---
+- name: Static Nginx Website and Custom 404 Error Page
+  hosts: localhost # change to target nodes if needed
+  become: true
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Website content (index.html)
+      copy:
+        content: |
+          <html>
+            <head><title>Welcome to My Static Website</title></head>
+            <body><h1>Hello World! Welcome to My Static Website :)</h1></body>
+          </html>
+        dest: /var/www/html/index.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Custom 404 error page
+      copy:
+        content: |
+          <html>
+            <head><title>404 - Page Not Found</title></head>
+            <body><h1>Oops! Page not found. Return to the homepage.</h1></body>
+          </html>
+        dest: /var/www/html/404.html
+        owner: www-data
+        group: www-data
+        mode: '0644'
+
+    - name: Configure Nginx to use custom error page
+      template:
+        src: nginx_website.conf.j2
+        dest: /etc/nginx/sites-available/default
+      notify:
+        - Restart Nginx
+
+    - name: Configure Nginx to use custom error page
+      template:
+        src: nginx_website.conf.j2  # in reference to the template file
+        dest: /etc/nginx/sites-available/default  # nginx default config file
+      notify:
+        - Restart Nginx
+
+    - name: Ensure Nginx is running
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+  handlers:
+  - name: Restart Nginx
+    service:
+      name: nginx
+      state: restarted
+
