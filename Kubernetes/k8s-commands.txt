@@ -1,0 +1,12 @@
+The task is to deploy a basic Nginx pod using kubectl commands, then expose it as a service. Using the following commands you can be able to create an nginx pod and make the service accessible externally
+
+# Step 1- Create the Nginx pod
+kubectl run nginx-pod --image=nginx --restart=Never
+
+# Step 2- Expose the Nginx pod as a service
+kubectl expose pod nginx-pod --port=80 --type=NodePort
+
+# Step 3- Verify the pod and service
+kubectl get pods
+kubectl get services
+
