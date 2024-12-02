@@ -1,0 +1,10 @@
+all:
+  hosts:
+    server1:
+      ansible_host: 34.118.81.115
+    server2:
+      ansible_host: 35.245.205.56
+  vars:
+    ansible_user: devops
+    ansible_password: today@1234
+
