@@ -1,10 +1,10 @@
 all:
   hosts:
     server1:
-      ansible_host: 34.118.81.115
+      ansible_host: YourIP1
     server2:
-      ansible_host: 35.245.205.56
+      ansible_host: YourIP2
   vars:
-    ansible_user: devops
+    ansible_user: devops #ensure you have setup devops user
     ansible_password: today@1234
 
