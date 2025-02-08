@@ -3,7 +3,7 @@
 mkdir -p ~/docker-data
 ```
 ```shell
-echo "Hello from rootless Docker!" > ~/docker-data/file.txt
+echo "Hello from WSL!" > ~/docker-data/file.txt
 ```
 ## Build the docker image
 ```shell
