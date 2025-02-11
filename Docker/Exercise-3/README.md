@@ -11,7 +11,7 @@ docker build -t rootless-container .
 ```
 ## Run the container
 ```shell
-docker run --rm -v "C:\Users\hp\docker-data\file.txt:/app/file.txt:ro" rootless-container
+docker run --rm -v "path/to/file.txt:/app/file.txt:ro" rootless-container
 ```
 ## Expected Output
 "Hello from WSL!"
